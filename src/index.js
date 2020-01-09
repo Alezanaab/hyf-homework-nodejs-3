@@ -12,15 +12,20 @@ app.get('/', function (req, res) {
 
 app.get('/users', function (req, res) {
     res.send(users);
-    users[0] = { id: 0 };
 });
 
 app.post('/user', function (req, res) {
-    res.status(200).send({ id: 0 });
+    res.status(200).send(users[0]);
+    users.push({ id: 0 });
 });
 
 app.get('/user/:id', function (req, res) {
     res.send({ id: 0 });
+});
+
+app.delete('/user/:id', function (req, res) {
+    users[0] ? res.status(202).send(users) : res.status(204).send();
+    users.pop();
 });
 
 
